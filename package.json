@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "push": "ng build --prod && docker image build -t arnaud512/spotify-featured:latest . && docker push arnaud512/spotify-featured:latest"
   },
   "private": true,
   "dependencies": {

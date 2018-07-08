@@ -30,4 +30,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Build and push to docker
 `ng build --prod`
 `docker image build -t arnaud512/spotify-featured:latest .`
-`docker push arnaud512/spotify-featured:latest
+`docker push arnaud512/spotify-featured:latest`
+
+OR
+
+`npm run push`
