@@ -9,7 +9,7 @@ import { countryList } from './services/countryList';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Spotify Featured';
+  title = 'Worldify';
   selected = { code: "FR", name: "France"};
   isCollapsed = true;
   countryList = countryList;
@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     let code = localStorage.getItem("country") || "FR";
     let country = countryList.find(country => country.code == code);
-    console.log(country);
     this.selected = country;
   }
 

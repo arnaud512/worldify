@@ -3,11 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
 
 @Component({
-  selector: 'app-new-releases',
-  templateUrl: './new-releases.component.html',
-  styleUrls: ['./new-releases.component.css']
+  selector: 'app-category-playlists',
+  templateUrl: './category-playlists.component.html',
+  styleUrls: ['./category-playlists.component.css']
 })
-export class NewReleasesComponent implements OnInit {
+export class CategoryPlaylistsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -15,7 +15,8 @@ export class NewReleasesComponent implements OnInit {
     private spotifyService: SpotifyService
   ) { }
 
-  newReleased;
+  playlists;
+  name;
 
   ngOnInit() {
     if (!this.spotifyService.isAuthenticated()) {
@@ -23,24 +24,18 @@ export class NewReleasesComponent implements OnInit {
       return;
     }
 
-    let country = localStorage.getItem("country") || "FR";
-    this.spotifyService.getNewReleased(country, -50).subscribe(
-      res => {
-        this.newReleased = res;
-      }, err => {
-        if (err.status === 401) {
-          this.spotifyService.retrieveToken(window.location.origin);
-        }
-      }
-    );
-  }
+    const id = this.route.snapshot.paramMap.get('id');
 
-  loadMore() {
+    this.route
+      .queryParams
+      .subscribe(params => {
+          this.name = params["name"];
+      });
+
     let country = localStorage.getItem("country") || "FR";
-    this.spotifyService.getNewReleased(country, this.newReleased.albums.offset).subscribe(
+    this.spotifyService.getPlaylistsById(id, country).subscribe(
       res => {
-        res.albums.items.unshift(...this.newReleased.albums.items)
-        this.newReleased = res
+        this.playlists = res.playlists;
       }, err => {
         if (err.status === 401) {
           this.spotifyService.retrieveToken(window.location.origin);
@@ -53,5 +48,4 @@ export class NewReleasesComponent implements OnInit {
     window.location.href=item.uri;
   }
 
-  
 }

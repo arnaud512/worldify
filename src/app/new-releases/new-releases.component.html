@@ -3,7 +3,7 @@
     <h1> New Released</h1>
     <div class="row">
       <span *ngFor="let item of newReleased.albums.items" style="margin-right: 15px; margin-bottom: 15px;">
-        <span class="card" style="width: 160px; min-height: 308px;" (click)="open(item)">
+        <span class="card cursor" style="width: 160px; min-height: 308px;" (click)="open(item)">
           <img class="card-img-top" src="{{ item.images[0].url }}" alt="{{ item.name }}">
           <div class="card-body">
             <h5 class="card-title">{{ item.artists[0].name}}</h5>
@@ -12,6 +12,6 @@
         </span>
       </span>
     </div>
-    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="loadMore()">Load more</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="loadMore(newReleased)">Load more</button>
   </div>
 </main>

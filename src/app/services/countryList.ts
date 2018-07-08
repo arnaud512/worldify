@@ -1,5 +1,5 @@
 export const countryList = [
-    { code: "FR", name: "France"},
+    { code: "FR", name: "France", locale: "fr_FR"},
     { code: "US", name: "United States of America"},
     { code: "BE", name: "Belgium"},
     { code: "GB", name: "United Kingdom"},

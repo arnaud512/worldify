@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { countryList } from './countryList';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class SpotifyService {
 
   uriGetFeaturedPlaylists = 'https://api.spotify.com/v1/browse/featured-playlists?limit=20&country='
   uriGetNewReleased = "https://api.spotify.com/v1/browse/new-releases"
-  "
+  uriGetGenres = "https://api.spotify.com/v1/browse/categories"
 
   constructor(
     private http: HttpClient
@@ -50,5 +51,29 @@ export class SpotifyService {
       + '&limit=50'
       + '&offset=' + (offset + 50),
       {headers: headers});
+  }
+
+  getGenres(country) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
+    return this.http.get<any>(this.uriGetGenres
+      + '?country=' + country
+      + '&limit=50'
+      + '&locale=' + this.getLocale(country),
+      {headers: headers});
+  }
+
+  getPlaylistsById(id, country) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
+    return this.http.get<any>(this.uriGetGenres + "/" + id + "/playlists"
+      + '?country=' + country
+      + '&limit=50',
+      {headers: headers});
+  }
+
+  getLocale(country) {
+    let countryObj = countryList.find(obj => obj.code == country);
+    return countryObj.locale || 'us_EN'
   }
 }

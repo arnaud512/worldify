@@ -10,13 +10,17 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
+import { GenresAndMoodComponent } from './genres-and-mood/genres-and-mood.component';
+import { CategoryPlaylistsComponent } from './category-playlists/category-playlists.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    NewReleasesComponent
+    NewReleasesComponent,
+    GenresAndMoodComponent,
+    CategoryPlaylistsComponent
   ],
   imports: [
     BrowserModule,

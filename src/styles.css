@@ -6,3 +6,7 @@ body {
 }
 
 .dropdown-menu { right: 0; left: auto; }
+
+.cursor:hover {
+    cursor: pointer;
+}

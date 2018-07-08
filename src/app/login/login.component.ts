@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
   }
 
   getAuthorization() {
-    console.log("Retrieve token");
     this.spotifyService.retrieveToken(window.location.origin);
   }
 
