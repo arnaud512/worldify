@@ -9,12 +9,14 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { NewReleasesComponent } from './new-releases/new-releases.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NewReleasesComponent
   ],
   imports: [
     BrowserModule,

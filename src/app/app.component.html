@@ -6,7 +6,10 @@
   <div class="collapse navbar-collapse" [collapse]="isCollapsed">
     <ul class="navbar-nav  mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/">Home</a>
+        <a class="nav-link" routerLink="/">Featured</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/new-releases">New Releases</a>
       </li>
       <li *ngIf="!isAuthenticated">
         <a class="nav-link" routerLink="/login">Login</a>

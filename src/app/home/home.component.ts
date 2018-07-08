@@ -19,16 +19,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (!this.spotifyService.isAuthenticated()) {
-      console.log("not authenticated");
       this.router.navigate(['login']);
       return;
     }
 
     let country = localStorage.getItem("country") || "FR";
-    console.log(country);
     this.spotifyService.getFeaturedPlaylists(country).subscribe(
       res => {
-        console.log(res);
         this.featuredPlaylists = res;
       }, err => {
         if (err.status === 401) {
