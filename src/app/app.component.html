@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav  mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/">Home</a>
       </li>
@@ -12,6 +12,14 @@
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
     </ul>
+    <div class="btn-group my-2 my-lg-0" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+              aria-controls="dropdown-basic"> {{ selected.name }} <span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="button-basic">
+        <li role="menuitem" *ngFor="let country of countryList" (click)="select(country)"><a class="dropdown-item">{{country.name}}</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 

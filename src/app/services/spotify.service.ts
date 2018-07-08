@@ -8,7 +8,7 @@ export class SpotifyService {
 
   CLIENT_ID = '2b09c6e30b4c4cc1acb5353c9a62ddab';
 
-  uriGetFeaturedPlaylists = 'https://api.spotify.com/v1/browse/featured-playlists?country=FR&limit=20'
+  uriGetFeaturedPlaylists = 'https://api.spotify.com/v1/browse/featured-playlists?limit=20&country='
   uriRefreshToken = 'https://accounts.spotify.com/api/token'
 
   constructor(
@@ -33,9 +33,9 @@ export class SpotifyService {
       + '&scope=' + scopes);
   }
 
-  getFeaturedPlaylists() {
+  getFeaturedPlaylists(country) {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
-    return this.http.get<any>(this.uriGetFeaturedPlaylists, {headers: headers});
+    return this.http.get<any>(this.uriGetFeaturedPlaylists + country, {headers: headers});
   }
 }

@@ -24,7 +24,9 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.spotifyService.getFeaturedPlaylists().subscribe(
+    let country = localStorage.getItem("country") || "FR";
+    console.log(country);
+    this.spotifyService.getFeaturedPlaylists(country).subscribe(
       res => {
         console.log(res);
         this.featuredPlaylists = res;
@@ -39,5 +41,5 @@ export class HomeComponent implements OnInit {
   open(item) {
     window.location.href=item.uri;
   }
-
+  
 }
