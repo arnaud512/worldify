@@ -7,7 +7,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class SpotifyService {
 
   CLIENT_ID = '2b09c6e30b4c4cc1acb5353c9a62ddab';
-  REDIRECT_URI = 'http://localhost:4200/callback/';
 
   uriGetFeaturedPlaylists = 'https://api.spotify.com/v1/browse/featured-playlists?country=FR&limit=20'
 
@@ -23,12 +22,12 @@ export class SpotifyService {
     return this.getToken();
   }
 
-  retrieveToken() {
+  retrieveToken(origin) {
     const scopes = 'user-read-private';
     window.location.href = ('https://accounts.spotify.com/authorize/?'
       + 'client_id=' + this.CLIENT_ID
       + '&response_type=token'
-      + '&redirect_uri=' + this.REDIRECT_URI
+      + '&redirect_uri=' + origin + "/callback/"
       + '&scope=' + scopes);
   }
 
