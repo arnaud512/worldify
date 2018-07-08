@@ -9,6 +9,7 @@ export class SpotifyService {
   CLIENT_ID = '2b09c6e30b4c4cc1acb5353c9a62ddab';
 
   uriGetFeaturedPlaylists = 'https://api.spotify.com/v1/browse/featured-playlists?country=FR&limit=20'
+  uriRefreshToken = 'https://accounts.spotify.com/api/token'
 
   constructor(
     private http: HttpClient
@@ -29,6 +30,14 @@ export class SpotifyService {
       + '&response_type=token'
       + '&redirect_uri=' + origin + "/callback/"
       + '&scope=' + scopes);
+  }
+
+  retrieveRefreshToken(origin) {
+    let body = {
+      grant_type: "refresh_token",
+      access_token: `Bearer ${this.isAuthenticated()}`
+    }
+    return this.http.post<any>(this.uriRefreshToken, body);
   }
 
   getFeaturedPlaylists() {

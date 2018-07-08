@@ -26,6 +26,10 @@ export class HomeComponent implements OnInit {
       res => {
         console.log(res);
         this.featuredPlaylists = res;
+      }, err => {
+        if (err.status === 401) {
+          this.spotifyService.retrieveToken(window.location.origin);
+        }
       }
     );
   }
