@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (!this.spotifyService.isAuthenticated()) {
+      console.log("not authenticated");
       this.router.navigate(['login']);
+      return;
     }
 
     this.spotifyService.getFeaturedPlaylists().subscribe(

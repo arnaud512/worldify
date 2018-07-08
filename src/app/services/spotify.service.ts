@@ -24,20 +24,13 @@ export class SpotifyService {
   }
 
   retrieveToken(origin) {
+    localStorage.removeItem('token');
     const scopes = 'user-read-private';
     window.location.href = ('https://accounts.spotify.com/authorize/?'
       + 'client_id=' + this.CLIENT_ID
       + '&response_type=token'
       + '&redirect_uri=' + origin + "/callback/"
       + '&scope=' + scopes);
-  }
-
-  retrieveRefreshToken(origin) {
-    let body = {
-      grant_type: "refresh_token",
-      access_token: `Bearer ${this.isAuthenticated()}`
-    }
-    return this.http.post<any>(this.uriRefreshToken, body);
   }
 
   getFeaturedPlaylists() {

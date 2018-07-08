@@ -19,10 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     var hash = window.location.hash;
-
-    if (window.location.search.substring(1).indexOf("error") !== -1) {
-
-    } else if (hash) {
+    if (hash) {
       var token = window.location.hash.split('&')[0].split('=')[1];
       this.setToken(token)
       this.router.navigate(['']);
@@ -38,11 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   setToken(token) {
-    this.spotifyService.retrieveRefreshToken(window.location.origin).subscribe(res => {
-      console.log(res);
-    }, err => {
-      console.log("err refreshToken", err);
-    });
     localStorage.setItem('token', token);
   }
 

@@ -8,7 +8,7 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/">Home</a>
       </li>
-      <li>
+      <li *ngIf="!isAuthenticated">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
     </ul>
