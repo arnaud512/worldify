@@ -4,3 +4,5 @@
 body {
     padding-top: 4.5rem;
 }
+
+.dropdown-menu { right: 0; left: auto; }

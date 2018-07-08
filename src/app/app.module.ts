@@ -5,6 +5,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +19,7 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
     AppRoutingModule,
     HttpClientModule
   ],

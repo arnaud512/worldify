@@ -11,9 +11,9 @@ import { countryList } from './services/countryList';
 export class AppComponent implements OnInit {
   title = 'Spotify Featured';
   selected = { code: "FR", name: "France"};
-
+  isCollapsed = true;
   countryList = countryList;
-
+ 
   isAuthenticated() {
     this.spotifyService.isAuthenticated();
   }
@@ -21,7 +21,9 @@ export class AppComponent implements OnInit {
   constructor(
     private spotifyService: SpotifyService,
     private router: Router
-  ){ }
+  ){ 
+    this.isCollapsed = true;
+  }
 
   ngOnInit(){
     let code = localStorage.getItem("country") || "FR";

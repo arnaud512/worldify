@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
   <a class="navbar-brand" href="#">{{ title }}</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler collapsed" type="button" (click)="isCollapsed = !isCollapsed" aria-expanded="false">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+  <div class="collapse navbar-collapse" [collapse]="isCollapsed">
     <ul class="navbar-nav  mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/">Home</a>
@@ -12,11 +12,19 @@
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
     </ul>
-    <div class="btn-group my-2 my-lg-0" dropdown>
+    <div id="dropdownMenuDesk" [hidden]="isCollapsed == false" class="btn-group my-2 my-lg-0" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
               aria-controls="dropdown-basic"> {{ selected.name }} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="button-basic">
+        <li role="menuitem" *ngFor="let country of countryList" (click)="select(country)"><a class="dropdown-item">{{country.name}}</a></li>
+      </ul>
+    </div>
+    <div id="dropdownMenuMobile" [hidden]="isCollapsed == true" class="btn-group my-2 my-lg-0" dropdown>
+      <button id="button-basic-mobile" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+              aria-controls="dropdown-basic-mobile"> {{ selected.name }} <span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic-mobile" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic-mobile">
         <li role="menuitem" *ngFor="let country of countryList" (click)="select(country)"><a class="dropdown-item">{{country.name}}</a></li>
       </ul>
     </div>
