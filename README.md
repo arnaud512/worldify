@@ -2,7 +2,7 @@
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=worldify&metric=alert_status)](https://sonarcloud.io/dashboard/index/worldify)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=worldify&metric=ncloc)](https://sonarcloud.io/dashboard/index/worldify)
 
-# SpotifyFeatured
+# Wordify - Spotify playlists worldwide
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
