@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { GenresAndMoodComponent } from './genres-and-mood/genres-and-mood.component';
 import { CategoryPlaylistsComponent } from './category-playlists/category-playlists.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CategoryPlaylistsComponent } from './category-playlists/category-playli
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
