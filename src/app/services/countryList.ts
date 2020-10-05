@@ -18,7 +18,7 @@ export const countryList = [
     { code: "BR", name: "Brazil", locale: "pt-BR"},
     { code: "CL", name: "Chile"},
     { code: "EC", name: "Ecuador"},
-    { code: "VE", name: "Venezuela"},
+    { code: "GT", name: "Guatemala"},
     { code: "BO", name: "Bolivia"},
   
 ];
