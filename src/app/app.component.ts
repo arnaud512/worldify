@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   selected = { code: 'FR', name: 'France'};
   isCollapsed = true;
   countryList = countryList;
-  activeUrl: Number;
+  activeUrlIndex: Number;
 
   isAuthenticated() {
     this.spotifyService.isAuthenticated();
@@ -50,13 +50,13 @@ export class AppComponent implements OnInit {
 
   setActivePage(url: string) {
     if (this.router.url === '/'){
-      this.activeUrl = 0;
+      this.activeUrlIndex = 0;
     } else if (url.includes('new-releases')) {
-      this.activeUrl = 1;
+      this.activeUrlIndex = 1;
     } else if (url.includes('genres') || url.includes('playlists')) {
-      this.activeUrl = 2;
+      this.activeUrlIndex = 2;
     } else {
-      this.activeUrl = -1;
+      this.activeUrlIndex = -1;
     }
   }
 }
