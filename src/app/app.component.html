@@ -23,7 +23,7 @@
               aria-controls="dropdown-basic"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span> {{ selected.name }} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right scrollable-menu" role="menu" aria-labelledby="button-basic">
-        <li role="menuitem" *ngFor="let country of countryList" (click)="select(country)">
+        <li class="cursor" role="menuitem" *ngFor="let country of countryList" (click)="select(country)">
           <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
         </li>
       </ul>
