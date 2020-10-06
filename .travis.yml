@@ -17,4 +17,4 @@ before_script:
 
 script:
 - ng build --prod
-- sonar-scanner -X
+- sonar-scanner
