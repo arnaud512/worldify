@@ -17,7 +17,6 @@ export const countryList = [
     { code: "SE", name: "Sweden"},
     { code: "AU", name: "Australia"},
     { code: "NZ", name: "New Zealand"},
-    { code: "BR", name: "Brazil"},
     { code: "CR", name: "Costa Rica"},
     { code: "CZ", name: "Czech Republic"},
     { code: "FI", name: "Finland"},
@@ -26,9 +25,13 @@ export const countryList = [
     { code: "ZA", name: "South Africa"},
     { code: "DO", name: "Dominican Republic"},
     { code: "SV", name: "El Salvador"},
-    { code: "GT", name: "Guatemala"},
     { code: "HN", name: "Honduras"},
     { code: "MX", name: "Mexico"},
     { code: "NI", name: "Nicaragua"},
-    { code: "PA", name: "Panama"}
+    { code: "PA", name: "Panama"},
+    { code: "BR", name: "Brazil", locale: "pt-BR"},
+    { code: "CL", name: "Chile"},
+    { code: "EC", name: "Ecuador"},
+    { code: "GT", name: "Guatemala"},
+    { code: "BO", name: "Bolivia"}
 ];
