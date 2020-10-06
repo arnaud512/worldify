@@ -12,7 +12,7 @@ Spotify has great playlists prepared for each country, changing according to the
 The problem is that you can’t see playlists featured from other countries.
 This is where Worldify comes in.
 
-[Screenshot]: https://github.com/arnaud512/worldify/raw/master/src/assets/worldify.png "Worldify"
+![Screenshow worldify](https://github.com/arnaud512/worldify/raw/master/src/assets/worldify.png "Worldify")
 
 
 From its web interface, you can access playlists from many countries and open them directly in the spotify app.
