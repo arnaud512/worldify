@@ -1,16 +1,20 @@
 language: node_js
 node_js:
 - node
+
 addons:
   sonarcloud:
     organization: "arnaud512-github"
     token:
       secure: "QOhMK/B10S6OdUYtvNHsu+kHEUaKNRQCjKvAMMr/XAj1EImiuW1zZBSlD66oo8vEYxsSF+qYrlOxWmC+q/OmNxhc47IvttStXcE55EUtr/O0ZOIrOZkiudlg+LLjx8uWochBXtznQZ7VvFI44xOT9j3xpVzE5Fo1eaGs9JFvW/ofEXY5qv93x9sbCk7mBuDhdssRdFxK2P0WDt6tWKL+LD89Y4mmJOgUClst3Rq0dHEJK2s3gd/gaj45Y0MtuAJ9URZa0jcAzh9zy3ECoSa+odRZzqVavNKm9axNqNenIj+hYlOlo3Rftb0yFSk/7yv6Ovg0uRVK61KUuuPFnHLZS6xdpV30cMgM6MlSaZsPY29/iyV6z8M/so4Ugw3+euBiI9pYudbut+cEDXAONqIQrpQtBe/4RjWxUj3auKdrKU3ZJvdQaZv+K8TSyALFHSroqULngJmdDE3BwWKhND3ogGO0Uhpk5VJK1jMtzA92gbgGz5P+sVCuDmk99SedUGTe3SG8M1wxBiBzjGRsfajpGDVCNlRDXSNzvJfNW1S93tgvZTq15e9FMdx8G5aimDCLbPah9qoLN20q/zK0aI63aAInK4zA03F5goprJiehl39g/svyKUjIndKo3MBy94+ZNuMs6oXKOqxh6XAZJfcULkQahmalvASpnulXyNoqzRM="
+
 branches:
   only:
   - master
+
 before_script:
 - npm install -g @angular/cli
+
 script:
 - ng build --prod
 - sonar-scanner -X
