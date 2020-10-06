@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SpotifyService} from '../services/spotify.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,34 +10,32 @@ import { Location } from '@angular/common';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private location: Location,
-    private route: ActivatedRoute,
     private router: Router,
     private spotifyService: SpotifyService
   ) { }
 
-  ngOnInit() {
-    var hash = window.location.hash;
+  ngOnInit(): void {
+    const hash = window.location.hash;
     if (hash) {
-      var token = window.location.hash.split('&')[0].split('=')[1];
+      const token = window.location.hash.split('&')[0].split('=')[1];
       this.setToken(token)
       this.router.navigate(['']);
     }
   }
 
-  getToken() {
+  getToken(): string {
     return localStorage.getItem('token');
   }
 
-  public isAuthenticated() {
+  public isAuthenticated(): string {
     return this.getToken();
   }
 
-  setToken(token) {
+  setToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  getAuthorization() {
+  getAuthorization(): void {
     this.spotifyService.retrieveToken(window.location.origin);
   }
 

@@ -18,7 +18,7 @@ export class CategoryPlaylistsComponent implements OnInit {
   playlists;
   name;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.spotifyService.isAuthenticated()) {
       this.router.navigate(['login']);
       return;
@@ -29,10 +29,10 @@ export class CategoryPlaylistsComponent implements OnInit {
     this.route
       .queryParams
       .subscribe(params => {
-          this.name = params["name"];
+          this.name = params.name;
       });
 
-    let country = localStorage.getItem("country") || "FR";
+    const country = localStorage.getItem('country') || 'FR';
     this.spotifyService.getPlaylistsById(id, country).subscribe(
       res => {
         this.playlists = res.playlists;
@@ -44,8 +44,8 @@ export class CategoryPlaylistsComponent implements OnInit {
     );
   }
 
-  open(item) {
-    window.location.href=item.uri;
+  open(item: { uri: string; }): void {
+    window.location.href = item.uri;
   }
 
 }

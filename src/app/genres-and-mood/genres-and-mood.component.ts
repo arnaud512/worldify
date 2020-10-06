@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
 
 
@@ -11,20 +11,19 @@ import { SpotifyService } from '../services/spotify.service';
 export class GenresAndMoodComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private spotifyService: SpotifyService
   ) { }
 
   genres;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.spotifyService.isAuthenticated()) {
       this.router.navigate(['login']);
       return;
     }
 
-    let country = localStorage.getItem("country") || "FR";
+    const country = localStorage.getItem('country') || 'FR';
     this.spotifyService.getGenres(country).subscribe(
       res => {
         this.genres = res;
@@ -36,8 +35,8 @@ export class GenresAndMoodComponent implements OnInit {
     );
   }
 
-  open(item) {
-    this.router.navigate(['/playlists/'+ item.id], {queryParams: {name: item.name}});
+  open(item: { id: string; name: string; }): void {
+    this.router.navigate(['/playlists/' + item.id], {queryParams: {name: item.name}});
   }
 
 }
