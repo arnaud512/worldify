@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
 
 @Component({
@@ -10,20 +10,19 @@ import { SpotifyService } from '../services/spotify.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private spotifyService: SpotifyService
   ) { }
 
   featuredPlaylists;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.spotifyService.isAuthenticated()) {
       this.router.navigate(['login']);
       return;
     }
 
-    let country = localStorage.getItem("country") || "FR";
+    const country = localStorage.getItem('country') || 'FR';
     this.spotifyService.getFeaturedPlaylists(country).subscribe(
       res => {
         this.featuredPlaylists = res;
@@ -35,8 +34,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  open(item) {
-    window.location.href=item.uri;
+  open(item: { uri: string; }): void {
+    window.location.href = item.uri;
   }
-  
+
 }
