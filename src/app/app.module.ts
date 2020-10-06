@@ -13,6 +13,7 @@ import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { GenresAndMoodComponent } from './genres-and-mood/genres-and-mood.component';
 import { CategoryPlaylistsComponent } from './category-playlists/category-playlists.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     NewReleasesComponent,
     GenresAndMoodComponent,
-    CategoryPlaylistsComponent
+    CategoryPlaylistsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -11,15 +11,6 @@ body {
     padding-bottom: 4.5rem;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  padding: 1rem;
-  width: 100%;
-  background-color: #efefef;
-  text-align: center;
-}
-
 .dropdown-menu { right: 0; left: auto; }
 
 .scrollable-menu {
