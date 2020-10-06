@@ -23,5 +23,12 @@ export const countryList = [
     { code: "FI", name: "Finland"},
     { code: "GR", name: "Greece"},
     { code: "IS", name: "Iceland"},
-    { code: "ZA", name: "South Africa"}
+    { code: "ZA", name: "South Africa"},
+    { code: "DO", name: "Dominican Republic"},
+    { code: "SV", name: "El Salvador"},
+    { code: "GT", name: "Guatemala"},
+    { code: "HN", name: "Honduras"},
+    { code: "MX", name: "Mexico"},
+    { code: "NI", name: "Nicaragua"},
+    { code: "PA", name: "Panama"}
 ];
