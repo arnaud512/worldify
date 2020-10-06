@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   selected = { code: 'FR', name: 'France'};
   isCollapsed = true;
   countryList = countryList;
+  activeUrl: Number;
 
   isAuthenticated() {
     this.spotifyService.isAuthenticated();
@@ -23,9 +24,11 @@ export class AppComponent implements OnInit {
     private router: Router
   ){
     this.isCollapsed = true;
+    this.setActivePage(this.router.url);
   }
 
   ngOnInit(){
+    this.onPageChange();
     const code = localStorage.getItem('country') || 'FR';
     const selectedCountry = countryList.find(country => country.code === code);
     this.selected = selectedCountry;
@@ -35,5 +38,25 @@ export class AppComponent implements OnInit {
     this.selected = country;
     localStorage.setItem('country', country.code);
     location.reload();
+  }
+
+  onPageChange() {
+    this.router.events.subscribe((value: any) => {
+      if (value.url) {
+        this.setActivePage(value.url);
+      }
+    });
+  }
+
+  setActivePage(url: string) {
+    if (this.router.url === '/'){
+      this.activeUrl = 0;
+    } else if (url.includes('new-releases')) {
+      this.activeUrl = 1;
+    } else if (url.includes('genres') || url.includes('playlists')) {
+      this.activeUrl = 2;
+    } else {
+      this.activeUrl = -1;
+    }
   }
 }
