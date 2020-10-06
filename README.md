@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/arnaud512/worldify.svg?branch=master)](https://travis-ci.org/arnaud512/worldify)
+[![Build Status](https://travis-ci.com/arnaud512/worldify.svg?branch=master)](https://travis-ci.com/arnaud512/worldify)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=worldify&metric=alert_status)](https://sonarcloud.io/dashboard/index/worldify)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=worldify&metric=ncloc)](https://sonarcloud.io/dashboard/index/worldify)
 
