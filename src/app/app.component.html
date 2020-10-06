@@ -23,8 +23,19 @@
               aria-controls="dropdown-basic"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span> {{ selected.name }} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right scrollable-menu" role="menu" aria-labelledby="button-basic">
-        <li role="menuitem" *ngFor="let country of countryList" (click)="select(country)">
+        <li>
+          <div class=" px-4 py-2">
+            <input type="text" class="form-control" placeholder="Search your country..." [(ngModel)]="searchContent" (keyup)="searchCountry()" (click)="$event.stopPropagation();" />
+          </div>
+        </li>
+        <li role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
           <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+        </li>
+
+        <li role="menuitem" *ngIf="filteredCountries.length === 0">
+          <div class=" px-4 py-2">
+            <span>No items found</span>
+          </div>
         </li>
       </ul>
     </div>
@@ -33,8 +44,17 @@
               aria-controls="dropdown-basic-mobile"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span> {{ selected.name }} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic-mobile" *dropdownMenu class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="button-basic-mobile">
-        <li role="menuitem" *ngFor="let country of countryList" (click)="select(country)">
+        <div class=" px-4 py-2">
+          <input type="text" class="form-control" placeholder="Search your country..." [(ngModel)]="searchContent" (keyup)="searchCountry()" (click)="$event.stopPropagation();" />
+        </div>
+        <li role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
           <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+        </li>
+
+        <li role="menuitem" *ngIf="filteredCountries.length === 0">
+          <div class=" px-4 py-2">
+            <span>No items found</span>
+          </div>
         </li>
       </ul>
     </div>

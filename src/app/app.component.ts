@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   selected = { code: 'FR', name: 'France'};
   isCollapsed = true;
   countryList = countryList;
+  filteredCountries = countryList;
+  searchContent: string = '';
 
   isAuthenticated() {
     this.spotifyService.isAuthenticated();
@@ -35,5 +37,13 @@ export class AppComponent implements OnInit {
     this.selected = country;
     localStorage.setItem('country', country.code);
     location.reload();
+  }
+
+  searchCountry() {
+    const searchContent = this.searchContent.toLowerCase();
+
+    this.filteredCountries = this.countryList.filter((countryItem) => {
+      return countryItem.name.toLowerCase().indexOf(searchContent) > -1;
+    });
   }
 }
