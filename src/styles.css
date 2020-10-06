@@ -7,6 +7,12 @@ body {
 
 .dropdown-menu { right: 0; left: auto; }
 
+.scrollable-menu {
+  height: auto;
+  max-height: 400px;
+  overflow-x: hidden;
+}
+
 .cursor:hover {
     cursor: pointer;
 }
