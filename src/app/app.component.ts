@@ -10,10 +10,10 @@ import { countryList } from './services/countryList';
 })
 export class AppComponent implements OnInit {
   title = 'Worldify';
-  selected = { code: "FR", name: "France"};
+  selected = { code: 'FR', name: 'France'};
   isCollapsed = true;
   countryList = countryList;
- 
+
   isAuthenticated() {
     this.spotifyService.isAuthenticated();
   }
@@ -21,19 +21,19 @@ export class AppComponent implements OnInit {
   constructor(
     private spotifyService: SpotifyService,
     private router: Router
-  ){ 
+  ){
     this.isCollapsed = true;
   }
 
   ngOnInit(){
-    let code = localStorage.getItem("country") || "FR";
-    let country = countryList.find(country => country.code == code);
-    this.selected = country;
+    const code = localStorage.getItem('country') || 'FR';
+    const selectedCountry = countryList.find(country => country.code === code);
+    this.selected = selectedCountry;
   }
 
   select(country) {
     this.selected = country;
-    localStorage.setItem("country", country.code);
+    localStorage.setItem('country', country.code);
     location.reload();
   }
 }

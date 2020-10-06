@@ -1,10 +1,22 @@
-[![Build Status](https://travis-ci.org/arnaud512/worldify.svg?branch=master)](https://travis-ci.org/arnaud512/worldify)
+[![Build Status](https://travis-ci.com/arnaud512/worldify.svg?branch=master)](https://travis-ci.com/arnaud512/worldify)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=worldify&metric=alert_status)](https://sonarcloud.io/dashboard/index/worldify)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=worldify&metric=ncloc)](https://sonarcloud.io/dashboard/index/worldify)
 
-# SpotifyFeatured
+# Worldify
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Get the Spotify content based on your favorite country!
+
+## Motivation
+
+Spotify has great playlists prepared for each country, changing according to the time of day.
+The problem is that you can’t see playlists featured from other countries.
+This is where Worldify comes in.
+
+![Screenshow worldify](https://github.com/arnaud512/worldify/raw/master/src/assets/worldify.png "Worldify")
+
+
+From its web interface, you can access playlists from many countries and open them directly in the spotify app.
+With Worldify, you will be able to discover new categories that you would not have discovered with the Spotify app.
 
 ## Development server
 

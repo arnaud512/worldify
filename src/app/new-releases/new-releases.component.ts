@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
 
 @Component({
@@ -10,20 +10,19 @@ import { SpotifyService } from '../services/spotify.service';
 export class NewReleasesComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private spotifyService: SpotifyService
   ) { }
 
   newReleased;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.spotifyService.isAuthenticated()) {
       this.router.navigate(['login']);
       return;
     }
 
-    let country = localStorage.getItem("country") || "FR";
+    const country = localStorage.getItem('country') || 'FR';
     this.spotifyService.getNewReleased(country, -50).subscribe(
       res => {
         this.newReleased = res;
@@ -35,12 +34,12 @@ export class NewReleasesComponent implements OnInit {
     );
   }
 
-  loadMore() {
-    let country = localStorage.getItem("country") || "FR";
+  loadMore(): void {
+    const country = localStorage.getItem('country') || 'FR';
     this.spotifyService.getNewReleased(country, this.newReleased.albums.offset).subscribe(
       res => {
-        res.albums.items.unshift(...this.newReleased.albums.items)
-        this.newReleased = res
+        res.albums.items.unshift(...this.newReleased.albums.items);
+        this.newReleased = res;
       }, err => {
         if (err.status === 401) {
           this.spotifyService.retrieveToken(window.location.origin);
@@ -49,9 +48,9 @@ export class NewReleasesComponent implements OnInit {
     );
   }
 
-  open(item) {
-    window.location.href=item.uri;
+  open(item: { uri: string; }): void {
+    window.location.href = item.uri;
   }
 
-  
+
 }
