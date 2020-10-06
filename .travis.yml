@@ -1,16 +1,20 @@
 language: node_js
 node_js:
-- 8.9.0
+- node
+
 addons:
   sonarcloud:
     organization: "arnaud512-github"
     token:
-      secure: AdGp8hyVcWQ1qPWEyzMAplI0Ay4tdPH9aGndNsH2ansDiBCjCUUi08QkEM3gn/eCylezMWKzHjLUHOnbEiO7zQfSxxsNAvOMbJL8W50R8a8WAxKAIfYSaGywqxtF9N8HMYgQNGXXY6PHBFJVG2vrh6YfmL5lpU9Qg02jqX0KkaaxcE1lu0unwMZS/NZMIlAt5QNLZh//Aps9/I4YNiPEdeUbMjpk89xYHqOfw24zSdLe9lSxblczMxnTERXNbcvy7JliDiPlhtnQB+d9hUd+YyLQlhEmARNCXxtclr4i0yrdlZoddYaiRWJvuIrtdMd7R536joOAHC/UzJ0fqz2q4/7B5CAXkn7HK9mp64NqYI8T6nuMmeTfRXQkHqeTcI0ApRPgNTFWRpvOBsBpHdCQpUC3xE9XsrR0AwvgdgHLpVp95zly4g1DFrzfqXgs6e4qnT1qET6y+zqf8OK/7VW0iXBi7LC4YfxvpIQg5Na1EXhJFw+0Cubl6TwyA60pLb5wSi3mDyF1iC9omuSrXO6ubNmPntaNA21cPw9LkqD3sSz6FjASvQNP1foTGoZNHJ+phsLBxaI3pHgrBP7Hie/WFI1iqy7CIPztc38ojYA1gQF7YqpGUchIUT8T7wWWTajI3BQ7NeDvKubINUpCFkjWwmW4Y6FEX4uznZrCbxCuwx8=
+      secure: "QOhMK/B10S6OdUYtvNHsu+kHEUaKNRQCjKvAMMr/XAj1EImiuW1zZBSlD66oo8vEYxsSF+qYrlOxWmC+q/OmNxhc47IvttStXcE55EUtr/O0ZOIrOZkiudlg+LLjx8uWochBXtznQZ7VvFI44xOT9j3xpVzE5Fo1eaGs9JFvW/ofEXY5qv93x9sbCk7mBuDhdssRdFxK2P0WDt6tWKL+LD89Y4mmJOgUClst3Rq0dHEJK2s3gd/gaj45Y0MtuAJ9URZa0jcAzh9zy3ECoSa+odRZzqVavNKm9axNqNenIj+hYlOlo3Rftb0yFSk/7yv6Ovg0uRVK61KUuuPFnHLZS6xdpV30cMgM6MlSaZsPY29/iyV6z8M/so4Ugw3+euBiI9pYudbut+cEDXAONqIQrpQtBe/4RjWxUj3auKdrKU3ZJvdQaZv+K8TSyALFHSroqULngJmdDE3BwWKhND3ogGO0Uhpk5VJK1jMtzA92gbgGz5P+sVCuDmk99SedUGTe3SG8M1wxBiBzjGRsfajpGDVCNlRDXSNzvJfNW1S93tgvZTq15e9FMdx8G5aimDCLbPah9qoLN20q/zK0aI63aAInK4zA03F5goprJiehl39g/svyKUjIndKo3MBy94+ZNuMs6oXKOqxh6XAZJfcULkQahmalvASpnulXyNoqzRM="
+
 branches:
   only:
   - master
+
 before_script:
 - npm install -g @angular/cli
+
 script:
 - ng build --prod
-- sonar-scanner
+- sonar-scanner -X
