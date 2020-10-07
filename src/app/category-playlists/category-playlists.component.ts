@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
+import { BrowserStorageService } from '../services/browser-storage.service';
 
 @Component({
   selector: 'app-category-playlists',
@@ -12,7 +13,8 @@ export class CategoryPlaylistsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private spotifyService: SpotifyService
+    private spotifyService: SpotifyService,
+    private browserStorageService: BrowserStorageService
   ) { }
 
   playlists;
@@ -31,8 +33,7 @@ export class CategoryPlaylistsComponent implements OnInit {
       .subscribe(params => {
           this.name = params.name;
       });
-
-    const country = localStorage.getItem('country') || 'FR';
+    const country = this.browserStorageService.getLocal('country') || 'FR';
     this.spotifyService.getPlaylistsById(id, country).subscribe(
       res => {
         this.playlists = res.playlists;

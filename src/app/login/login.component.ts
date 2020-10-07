@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SpotifyService} from '../services/spotify.service';
 import { Router } from '@angular/router';
+import { BrowserStorageService } from '../services/browser-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,20 +12,21 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private spotifyService: SpotifyService
+    private spotifyService: SpotifyService,
+    private browserStorageService: BrowserStorageService
   ) { }
 
   ngOnInit(): void {
     const hash = window.location.hash;
     if (hash) {
       const token = window.location.hash.split('&')[0].split('=')[1];
-      this.setToken(token)
+      this.setToken(token);
       this.router.navigate(['']);
     }
   }
 
   getToken(): string {
-    return localStorage.getItem('token');
+    return this.browserStorageService.getLocal('token');
   }
 
   public isAuthenticated(): string {
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   setToken(token: string): void {
-    localStorage.setItem('token', token);
+    this.browserStorageService.setLocal('token', token);
   }
 
   getAuthorization(): void {

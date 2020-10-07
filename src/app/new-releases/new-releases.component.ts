@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
+import { BrowserStorageService } from '../services/browser-storage.service';
 
 @Component({
   selector: 'app-new-releases',
@@ -11,7 +12,8 @@ export class NewReleasesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private spotifyService: SpotifyService
+    private spotifyService: SpotifyService,
+    private browserStorageService: BrowserStorageService
   ) { }
 
   newReleased;
@@ -22,7 +24,7 @@ export class NewReleasesComponent implements OnInit {
       return;
     }
 
-    const country = localStorage.getItem('country') || 'FR';
+    const country = this.browserStorageService.getLocal('country') || 'FR';
     this.spotifyService.getNewReleased(country, -50).subscribe(
       res => {
         this.newReleased = res;
@@ -35,7 +37,7 @@ export class NewReleasesComponent implements OnInit {
   }
 
   loadMore(): void {
-    const country = localStorage.getItem('country') || 'FR';
+    const country = this.browserStorageService.getLocal('country') || 'FR';
     this.spotifyService.getNewReleased(country, this.newReleased.albums.offset).subscribe(
       res => {
         res.albums.items.unshift(...this.newReleased.albums.items);
@@ -51,6 +53,5 @@ export class NewReleasesComponent implements OnInit {
   open(item: { uri: string; }): void {
     window.location.href = item.uri;
   }
-
 
 }

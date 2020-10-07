@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
-
+import { BrowserStorageService } from '../services/browser-storage.service';
 
 @Component({
   selector: 'app-genres-and-mood',
@@ -12,7 +12,8 @@ export class GenresAndMoodComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private spotifyService: SpotifyService
+    private spotifyService: SpotifyService,
+    private browserStorageService: BrowserStorageService
   ) { }
 
   genres;
@@ -23,7 +24,7 @@ export class GenresAndMoodComponent implements OnInit {
       return;
     }
 
-    const country = localStorage.getItem('country') || 'FR';
+    const country = this.browserStorageService.getLocal('country') || 'FR';
     this.spotifyService.getGenres(country).subscribe(
       res => {
         this.genres = res;
