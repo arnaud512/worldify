@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   selected = { code: 'FR', name: 'France'};
   isCollapsed = true;
   countryList = countryList;
+  filteredCountries = countryList;
+  searchContent: string = '';
   activeUrlIndex: Number;
 
   isAuthenticated() {
@@ -40,6 +42,13 @@ export class AppComponent implements OnInit {
     location.reload();
   }
 
+  searchCountry() {
+    const searchContent = this.searchContent.toLowerCase();
+
+    this.filteredCountries = this.countryList.filter((countryItem) => {
+      return countryItem.name.toLowerCase().indexOf(searchContent) > -1;
+    });
+  }
   onPageChange() {
     this.router.events.subscribe((value: any) => {
       if (value.url) {

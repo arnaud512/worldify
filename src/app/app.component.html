@@ -23,8 +23,26 @@
               aria-controls="dropdown-basic"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span> {{ selected.name }} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right scrollable-menu" role="menu" aria-labelledby="button-basic">
-        <li class="cursor" role="menuitem" *ngFor="let country of countryList" (click)="select(country)">
+        <li>
+          <div class=" px-4 py-2">
+            <div class="input-group">
+              <span class="input-group-prepend">
+                  <div class="input-group-text bg-transparent border-right-0">
+                    <svg aria-hidden="true" width="15" height="15" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z"></path></svg>
+                  </div>
+              </span>
+              <input type="search" class="form-control" placeholder="Search a country" [(ngModel)]="searchContent" (keyup)="searchCountry()" (search)="searchCountry()" (click)="$event.stopPropagation();" />
+            </div>
+          </div>
+        </li>
+        <li class="cursor" role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
           <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+        </li>
+
+        <li role="menuitem" *ngIf="filteredCountries.length === 0">
+          <div class=" px-4 py-2">
+            <span>No country found</span>
+          </div>
         </li>
       </ul>
     </div>
@@ -33,8 +51,24 @@
               aria-controls="dropdown-basic-mobile"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span> {{ selected.name }} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic-mobile" *dropdownMenu class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="button-basic-mobile">
-        <li role="menuitem" *ngFor="let country of countryList" (click)="select(country)">
+        <div class=" px-4 py-2">
+          <div class="input-group">
+            <span class="input-group-prepend">
+                <div class="input-group-text bg-transparent border-right-0">
+                  <svg aria-hidden="true" width="15" height="15" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z"></path></svg>
+                </div>
+            </span>
+            <input type="search" class="form-control" placeholder="Search a country" [(ngModel)]="searchContent" (keyup)="searchCountry()" (search)="searchCountry()" (click)="$event.stopPropagation();" />
+          </div>
+        </div>
+        <li role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
           <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+        </li>
+
+        <li role="menuitem" *ngIf="filteredCountries.length === 0">
+          <div class=" px-4 py-2">
+            <span>No country found</span>
+          </div>
         </li>
       </ul>
     </div>

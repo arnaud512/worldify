@@ -13,6 +13,7 @@ import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { GenresAndMoodComponent } from './genres-and-mood/genres-and-mood.component';
 import { CategoryPlaylistsComponent } from './category-playlists/category-playlists.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms'
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FooterComponent } from './footer/footer.component';
     CollapseModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
