@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">{{ title }}</a>
+  <a class="navbar-brand" href="#"><b>{{ title }}</b></a>
   <button class="navbar-toggler collapsed" type="button" (click)="isCollapsed = !isCollapsed" aria-expanded="false">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" [collapse]="isCollapsed">
     <ul class="navbar-nav  mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
+      <li class="nav-item active" [ngClass]="activeUrlIndex === 0 ?  'nav-item--active' : 'nav-item'">
         <a class="nav-link" routerLink="/">Featured</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item active" [ngClass]="activeUrlIndex === 1 ?  'nav-item--active' : 'nav-item'">
         <a class="nav-link" routerLink="/new-releases">New Releases</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item active" [ngClass]="activeUrlIndex === 2 ?  'nav-item--active' : 'nav-item'">
           <a class="nav-link" routerLink="/genres">Genres & Moods</a>
         </li>
       <li *ngIf="!isAuthenticated">
@@ -35,7 +35,7 @@
             </div>
           </div>
         </li>
-        <li role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
+        <li class="cursor" role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
           <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
         </li>
 
@@ -76,3 +76,5 @@
 </nav>
 
 <router-outlet></router-outlet>
+
+<app-footer></app-footer>
