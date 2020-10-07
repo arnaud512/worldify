@@ -1,7 +1,7 @@
 <main role="main" class="container">
   <div class="jumbotron" *ngIf="featuredPlaylists">
     <h1> {{ featuredPlaylists.message }}</h1>
-    <span *ngFor="let item of featuredPlaylists.playlists.items">
+    <span *ngFor="let item of featuredPlaylists.playlists.items" class="playlist-item">
       <img src="{{ item.images[0].url }}" alt="{{ item.name }}" class="img-thumbnail rounded cursor" width="160px" (click)="open(item)" style="margin-right: 10px; margin-bottom:  10px">
     </span>
   </div>

@@ -1,17 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
 html {
   position: relative;
   min-height: 100%;
+  font-family: "Poppins", serif;
 }
 
 body {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+  background: #222;
+  color: #eef;
+  font-family: "Poppins", serif;
 }
 
-.dropdown-menu { right: 0; left: auto; }
+.dropdown-menu {
+  right: 0;
+  left: auto;
+}
 
 .scrollable-menu {
   height: auto;
@@ -21,5 +28,22 @@ body {
 }
 
 .cursor:hover {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.jumbotron {
+  background: #181818;
+}
+
+.playlist-item img {
+  transition: all 0.2s ease;
+}
+
+.playlist-item:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.5);
+}
+
+.card {
+  color: #222;
 }
