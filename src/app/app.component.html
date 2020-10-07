@@ -36,7 +36,12 @@
           </div>
         </li>
         <li class="cursor" role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
-          <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+          <div class="selected" *ngIf="country.isPrimary">
+          <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}} </a>
+          </div>
+          <div *ngIf="!country.isPrimary">
+            <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+          </div>
         </li>
 
         <li role="menuitem" *ngIf="filteredCountries.length === 0">

@@ -6,3 +6,7 @@ h1 {
 li.nav-item--active a.nav-link {
     color: #28a745;
 }
+
+.selected{
+    background-color: #28a745;
+}
