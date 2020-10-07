@@ -6,3 +6,7 @@ footer {
   background-color: #efefef;
   text-align: center;
 }
+
+footer a {
+  color: #28a745;;
+}
