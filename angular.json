@@ -29,7 +29,8 @@
               "./node_modules/flag-icon-css/css/flag-icon.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "outputHashing": "all"
           },
           "configurations": {
             "production": {

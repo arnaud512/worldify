@@ -1,8 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
     padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
 }
 
 .dropdown-menu { right: 0; left: auto; }
@@ -10,6 +16,7 @@ body {
 .scrollable-menu {
   height: auto;
   max-height: 400px;
+  width: 300px;
   overflow-x: hidden;
 }
 
