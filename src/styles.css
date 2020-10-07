@@ -16,6 +16,7 @@ body {
 .scrollable-menu {
   height: auto;
   max-height: 400px;
+  width: 300px;
   overflow-x: hidden;
 }
 
