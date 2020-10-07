@@ -36,7 +36,7 @@
           </div>
         </li>
         <li class="cursor" role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
-          <a class="dropdown-item"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+          <a class="dropdown-item" [ngClass]="{'active' : country.isSelected}"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
         </li>
 
         <li role="menuitem" *ngIf="filteredCountries.length === 0">
