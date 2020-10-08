@@ -14,6 +14,7 @@ export class SpotifyService {
   uriGetFeaturedPlaylists = 'https://api.spotify.com/v1/browse/featured-playlists?limit=20&country='
   uriGetNewReleased = "https://api.spotify.com/v1/browse/new-releases"
   uriGetGenres = "https://api.spotify.com/v1/browse/categories"
+  uriGetPlaylists = "https://api.spotify.com/v1/playlists"
 
   constructor(
     private http: HttpClient
@@ -70,6 +71,12 @@ export class SpotifyService {
       + '?country=' + country
       + '&limit=50',
       {headers: headers});
+  }
+
+  getPlaylist(id) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
+    return this.http.get<any>(this.uriGetPlaylists + "/" + id, {headers: headers});
   }
 
   getLocale(country) {
