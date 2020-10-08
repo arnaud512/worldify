@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
+import { defaultCountryCode } from '../constants/constants';
 
 @Injectable({
   providedIn: 'any',
 })
 export class BrowserStorageService {
   getLocal(key: string): any {
-    const data = window.localStorage.getItem(key);
-    if (data) {
-      return data;
-    } else {
-      return null;
-    }
+    return window.localStorage.getItem(key);
+
   }
+
+  getCountryCode(key: string): string {
+    const countryCode = this.getLocal(key);
+    if (!countryCode) {
+      return defaultCountryCode;
+    }
+    return countryCode;
+  }
+
 
   setLocal(key: string, value: any): void {
     const data = value === undefined ? '' : value;

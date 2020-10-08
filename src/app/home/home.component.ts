@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['login']);
       return;
     }
-    const country = this.browserStorageService.getLocal('country') || 'FR';
-    this.spotifyService.getFeaturedPlaylists(country).subscribe(
+    const countryCode = this.browserStorageService.getCountryCode('country');
+    this.spotifyService.getFeaturedPlaylists(countryCode).subscribe(
       res => {
         this.featuredPlaylists = res;
       }, err => {

@@ -33,8 +33,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.onPageChange();
-    const code = this.browserStorageService.getLocal('country') || 'FR';
-    const selectedCountry = countryList.find(country => country.code === code);
+    const countryCode = this.browserStorageService.getCountryCode('country');
+    const selectedCountry = countryList.find(country => country.code === countryCode);
     this.selected = selectedCountry;
   }
 

@@ -33,8 +33,8 @@ export class CategoryPlaylistsComponent implements OnInit {
       .subscribe(params => {
           this.name = params.name;
       });
-    const country = this.browserStorageService.getLocal('country') || 'FR';
-    this.spotifyService.getPlaylistsById(id, country).subscribe(
+    const countryCode = this.browserStorageService.getCountryCode('country');
+    this.spotifyService.getPlaylistsById(id, countryCode).subscribe(
       res => {
         this.playlists = res.playlists;
       }, err => {
