@@ -24,7 +24,7 @@ export class GenresAndMoodComponent implements OnInit {
       return;
     }
 
-    const countryCode = this.browserStorageService.getCountryCode('country');
+    const countryCode = this.browserStorageService.getCountryCode();
     this.spotifyService.getGenres(countryCode).subscribe(
       res => {
         this.genres = res;

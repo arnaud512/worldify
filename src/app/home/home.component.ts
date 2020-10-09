@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['login']);
       return;
     }
-    const countryCode = this.browserStorageService.getCountryCode('country');
+    const countryCode = this.browserStorageService.getCountryCode();
     this.spotifyService.getFeaturedPlaylists(countryCode).subscribe(
       res => {
         this.featuredPlaylists = res;

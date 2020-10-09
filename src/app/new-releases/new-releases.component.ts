@@ -24,7 +24,7 @@ export class NewReleasesComponent implements OnInit {
       return;
     }
 
-    const countryCode = this.browserStorageService.getCountryCode('country');
+    const countryCode = this.browserStorageService.getCountryCode();
     this.spotifyService.getNewReleased(countryCode, -50).subscribe(
       res => {
         this.newReleased = res;
@@ -37,7 +37,7 @@ export class NewReleasesComponent implements OnInit {
   }
 
   loadMore(): void {
-    const countryCode = this.browserStorageService.getCountryCode('country');
+    const countryCode = this.browserStorageService.getCountryCode();
     this.spotifyService.getNewReleased(countryCode, this.newReleased.albums.offset).subscribe(
       res => {
         res.albums.items.unshift(...this.newReleased.albums.items);

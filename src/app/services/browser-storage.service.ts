@@ -10,8 +10,8 @@ export class BrowserStorageService {
 
   }
 
-  getCountryCode(key: string): string {
-    const countryCode = this.getLocal(key);
+  getCountryCode(): string {
+    const countryCode = this.getLocal('country');
     if (!countryCode) {
       return defaultCountryCode;
     }
