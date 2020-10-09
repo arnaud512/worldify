@@ -1,0 +1,43 @@
+.playlists {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+grid-template-rows: repeat(auto-fit, minmax(160px, 1fr));
+align-items: center;
+justify-items: center;
+gap: 10px;
+}
+
+.playlist {
+    position: relative;
+    width: 160px;
+    height: 160px;
+}
+
+.playlist .heart {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+
+    padding: 0.25rem 0.25rem 0.5rem 0.5rem;
+    border-radius: 0 0 0 0.5rem;
+    box-sizing: content-box;
+
+    background: white;
+    fill: #222;
+    
+    transition: fill 0.1s;
+    pointer-events: fill;
+    cursor: pointer;
+}
+
+.playlist.fav .heart {
+    fill: #fa4848;
+}
+
+.playlist .heart:hover {
+    fill: #e66767;
+}
+
+.playlist.fav .heart:hover {
+    fill: #d63c3c;
+}

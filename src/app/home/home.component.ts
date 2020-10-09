@@ -52,13 +52,10 @@ export class HomeComponent implements OnInit {
   }
   
   favorite(id): void {
-    if (this.isFavorite(id))
-    {
+    if (this.isFavorite(id)) {
       this.favorites = this.favorites.filter((fav) => fav !== id);
       this.favoritesItems = this.favoritesItems.filter((fav) => fav.id !== id);
-    }
-    else
-    {
+    } else {
       this.favorites.push(id);
       this.spotifyService.getPlaylist(id).toPromise().then((playlist) => this.favoritesItems.push(playlist));
     }
