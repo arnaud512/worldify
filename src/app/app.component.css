@@ -1,12 +1,16 @@
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 250%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
 }
 
 li.nav-item--active a.nav-link {
-    color: #28a745;
+  color: #28a745;
 }
 
 .dropdown-menu a.active {
   background-color: #91eda7;
+}
+
+.recentCountries {
+  margin-left: 20px;
 }
