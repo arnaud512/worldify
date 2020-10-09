@@ -1,46 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import { SpotifyService } from './services/spotify.service';
-import { Router } from '@angular/router';
-import { countryList } from './services/countryList';
+import { Component, OnInit } from "@angular/core";
+import { SpotifyService } from "./services/spotify.service";
+import { Router } from "@angular/router";
+import { countryList } from "./services/countryList";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  title = 'Worldify';
-  selected = { code: 'FR', name: 'France'};
+  title = "Worldify";
+  selected = { code: "FR", name: "France" };
   isCollapsed = true;
   countryList = countryList;
   filteredCountries = countryList;
-  searchContent: string = '';
+  searchContent: string = "";
   activeUrlIndex: Number;
+  recentCountries = [];
 
   isAuthenticated() {
     this.spotifyService.isAuthenticated();
   }
 
-  constructor(
-    private spotifyService: SpotifyService,
-    private router: Router
-  ){
+  constructor(private spotifyService: SpotifyService, private router: Router) {
     this.isCollapsed = true;
     this.setActivePage(this.router.url);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.onPageChange();
-    const code = localStorage.getItem('country') || 'FR';
-    const selectedCountry = countryList.find(country => country.code === code);
+    const code = localStorage.getItem("country") || "FR";
+    const selectedCountry = countryList.find(
+      (country) => country.code === code
+    );
+    this.recentCountries =
+      JSON.parse(localStorage.getItem("recentCountries")) || null;
     this.selected = selectedCountry;
-    var currentIndex = this.countryList.findIndex(x => x.code == code);
+    var currentIndex = this.countryList.findIndex((x) => x.code == code);
     this.filteredCountries = this.arrayMove(this.countryList, currentIndex, 0);
   }
 
   select(country) {
+    let recentCountries =
+      JSON.parse(localStorage.getItem("recentCountries")) || [];
+    recentCountries = recentCountries.filter((c) => c.code != country.code);
+    if (recentCountries.length == 6) {
+      recentCountries.splice(4, 1);
+    }
+    recentCountries.unshift(country);
+    localStorage.setItem("recentCountries", JSON.stringify(recentCountries));
+
     this.selected = country;
-    localStorage.setItem('country', country.code);
+    localStorage.setItem("country", country.code);
     location.reload();
   }
 
@@ -60,11 +71,11 @@ export class AppComponent implements OnInit {
   }
 
   setActivePage(url: string) {
-    if (this.router.url === '/'){
+    if (this.router.url === "/") {
       this.activeUrlIndex = 0;
-    } else if (url.includes('new-releases')) {
+    } else if (url.includes("new-releases")) {
       this.activeUrlIndex = 1;
-    } else if (url.includes('genres') || url.includes('playlists')) {
+    } else if (url.includes("genres") || url.includes("playlists")) {
       this.activeUrlIndex = 2;
     } else {
       this.activeUrlIndex = -1;

@@ -12,31 +12,48 @@
         <a class="nav-link" routerLink="/new-releases">New Releases</a>
       </li>
       <li class="nav-item active" [ngClass]="activeUrlIndex === 2 ?  'nav-item--active' : 'nav-item'">
-          <a class="nav-link" routerLink="/genres">Genres & Moods</a>
-        </li>
+        <a class="nav-link" routerLink="/genres">Genres & Moods</a>
+      </li>
       <li *ngIf="!isAuthenticated">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
     </ul>
     <div id="dropdownMenuDesk" [hidden]="isCollapsed == false" class="btn-group my-2 my-lg-0" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
-              aria-controls="dropdown-basic"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span> {{ selected.name }} <span class="caret"></span>
+        aria-controls="dropdown-basic"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span>
+        {{ selected.name }} <span class="caret"></span>
       </button>
-      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right scrollable-menu" role="menu" aria-labelledby="button-basic">
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right scrollable-menu" role="menu"
+        aria-labelledby="button-basic">
         <li>
           <div class=" px-4 py-2">
             <div class="input-group">
               <span class="input-group-prepend">
-                  <div class="input-group-text bg-transparent border-right-0">
-                    <svg aria-hidden="true" width="15" height="15" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z"></path></svg>
-                  </div>
+                <div class="input-group-text bg-transparent border-right-0">
+                  <svg aria-hidden="true" width="15" height="15" viewBox="0 0 18 18">
+                    <path
+                      d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z">
+                    </path>
+                  </svg>
+                </div>
               </span>
-              <input type="search" class="form-control" placeholder="Search a country" [(ngModel)]="searchContent" (keyup)="searchCountry()" (search)="searchCountry()" (click)="$event.stopPropagation();" />
+              <input type="search" class="form-control" placeholder="Search a country" [(ngModel)]="searchContent"
+                (keyup)="searchCountry()" (search)="searchCountry()" (click)="$event.stopPropagation();" />
             </div>
           </div>
         </li>
+        <div *ngIf="recentCountries">
+          <hr />
+          <li class="cursor">
+            <a *ngFor="let c of recentCountries" class="recentCountries" (click)="select(c)">
+              <span class="flag-icon flag-icon-{{c.code.toLowerCase()}}"></span>
+            </a>
+          </li>
+          <hr />
+        </div>
         <li class="cursor" role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
-          <a class="dropdown-item" [ngClass]="{'active' : country.isSelected}"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+          <a class="dropdown-item" [ngClass]="{'active' : country.isSelected}"><span
+              class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
         </li>
 
         <li role="menuitem" *ngIf="filteredCountries.length === 0">
@@ -48,21 +65,38 @@
     </div>
     <div id="dropdownMenuMobile" [hidden]="isCollapsed == true" class="btn-group my-2 my-lg-0" dropdown>
       <button id="button-basic-mobile" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
-              aria-controls="dropdown-basic-mobile"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span> {{ selected.name }} <span class="caret"></span>
+        aria-controls="dropdown-basic-mobile"> <span class="flag-icon flag-icon-{{selected.code.toLowerCase()}}"></span>
+        {{ selected.name }} <span class="caret"></span>
       </button>
-      <ul id="dropdown-basic-mobile" *dropdownMenu class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="button-basic-mobile">
+      <ul id="dropdown-basic-mobile" *dropdownMenu class="dropdown-menu scrollable-menu" role="menu"
+        aria-labelledby="button-basic-mobile">
         <div class=" px-4 py-2">
           <div class="input-group">
             <span class="input-group-prepend">
-                <div class="input-group-text bg-transparent border-right-0">
-                  <svg aria-hidden="true" width="15" height="15" viewBox="0 0 18 18"><path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z"></path></svg>
-                </div>
+              <div class="input-group-text bg-transparent border-right-0">
+                <svg aria-hidden="true" width="15" height="15" viewBox="0 0 18 18">
+                  <path
+                    d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z">
+                  </path>
+                </svg>
+              </div>
             </span>
-            <input type="search" class="form-control" placeholder="Search a country" [(ngModel)]="searchContent" (keyup)="searchCountry()" (search)="searchCountry()" (click)="$event.stopPropagation();" />
+            <input type="search" class="form-control" placeholder="Search a country" [(ngModel)]="searchContent"
+              (keyup)="searchCountry()" (search)="searchCountry()" (click)="$event.stopPropagation();" />
           </div>
         </div>
+        <div *ngIf="recentCountries">
+          <hr />
+          <li class="cursor">
+            <a *ngFor="let c of recentCountries" class="recentCountries" (click)="select(c)">
+              <span class="flag-icon flag-icon-{{c.code.toLowerCase()}}"></span>
+            </a>
+          </li>
+          <hr />
+        </div>
         <li role="menuitem" *ngFor="let country of filteredCountries" (click)="select(country)">
-          <a class="dropdown-item" [ngClass]="{'active' : country.isSelected}"><span class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
+          <a class="dropdown-item" [ngClass]="{'active' : country.isSelected}"><span
+              class="flag-icon flag-icon-{{country.code.toLowerCase()}}"></span> {{country.name}}</a>
         </li>
 
         <li role="menuitem" *ngIf="filteredCountries.length === 0">
