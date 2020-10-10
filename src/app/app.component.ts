@@ -36,6 +36,8 @@ export class AppComponent implements OnInit {
     const countryCode = this.browserStorageService.getCountryCode();
     const selectedCountry = countryList.find(country => country.code === countryCode);
     this.selected = selectedCountry;
+    var currentIndex = this.countryList.findIndex(x => x.code == code);
+    this.filteredCountries = this.arrayMove(this.countryList, currentIndex, 0);
   }
 
   select(country) {
@@ -70,5 +72,13 @@ export class AppComponent implements OnInit {
     } else {
       this.activeUrlIndex = -1;
     }
+  }
+
+  arrayMove(arr, fromIndex, toIndex) {
+    var element = arr[fromIndex];
+    element.isSelected = true;
+    arr.splice(fromIndex, 1);
+    arr.splice(toIndex, 0, element);
+    return arr;
   }
 }
