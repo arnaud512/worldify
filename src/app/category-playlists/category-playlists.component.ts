@@ -35,8 +35,7 @@ export class CategoryPlaylistsComponent implements OnInit {
       });
 
     const favs = localStorage.getItem(`fav-${id}`);
-    if (favs)
-    {
+    if (favs) {
       this.favorites = [...JSON.parse(favs)];
       this.favorites.forEach(async (id) => this.favoritesItems.push(await this.spotifyService.getPlaylist(id).toPromise()));
     }

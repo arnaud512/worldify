@@ -25,8 +25,7 @@ export class HomeComponent implements OnInit {
     }
 
     const favs = localStorage.getItem("fav");
-    if (favs)
-    {
+    if (favs) {
       this.favorites = [...JSON.parse(favs)];
       this.favorites.forEach(async (id) => this.favoritesItems.push(await this.spotifyService.getPlaylist(id).toPromise()));
     }
