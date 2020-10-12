@@ -1,15 +1,14 @@
 <main role="main" class="container">
-    <div class="jumbotron" *ngIf="genres">
-      <h1>Genres & Moods</h1>
-      <div class="row">
-        <span *ngFor="let item of genres.categories.items" style="margin-right: 15px; margin-bottom: 15px;">
-          <span class="card cursor" style="width: 160px;" (click)="open(item)" >
-            <img class="card-img-top" src="{{ item.icons[0].url }}" alt="{{ item.name }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.name}}</h5>
-            </div>
-          </span>
-        </span>
+  <div class="jumbotron" *ngIf="genres">
+    <h1>Genres & Moods</h1>
+    <div class="flex-container">
+      <div class="card cursor self-sized-card" *ngFor="let item of genres.categories.items"
+        style="margin-right: 10px; margin-bottom: 10px;" (click)="open(item)">
+        <img class="card-img-top" src="{{ item.icons[0].url }}" alt="{{ item.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name}}</h5>
+        </div>
       </div>
     </div>
-  </main>
+  </div>
+</main>
