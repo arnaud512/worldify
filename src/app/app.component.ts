@@ -15,10 +15,10 @@ export class AppComponent implements OnInit {
   isCollapsed = true;
   countryList = countryList;
   filteredCountries = countryList;
-  searchContent: string = '';
+  searchContent = '';
   activeUrlIndex: number;
 
-  isAuthenticated() {
+  isAuthenticated(): void {
     this.spotifyService.isAuthenticated();
   }
 
@@ -31,22 +31,22 @@ export class AppComponent implements OnInit {
     this.setActivePage(this.router.url);
   }
 
-  ngOnInit(){
+  ngOnInit(): void {
     this.onPageChange();
     const countryCode = this.browserStorageService.getCountryCode();
     const selectedCountry = countryList.find(country => country.code === countryCode);
     this.selected = selectedCountry;
-    var currentIndex = this.countryList.findIndex(x => x.code == code);
+    const currentIndex = this.countryList.findIndex(x => x.code === countryCode );
     this.filteredCountries = this.arrayMove(this.countryList, currentIndex, 0);
   }
 
-  select(country) {
+  select(country): void {
     this.selected = country;
     this.browserStorageService.setLocal('country', country.code);
     location.reload();
   }
 
-  searchCountry() {
+  searchCountry(): void {
     const searchContent = this.searchContent.toLowerCase();
 
     this.filteredCountries = this.countryList.filter((countryItem) => {
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onPageChange() {
+  onPageChange(): void {
     this.router.events.subscribe((value: any) => {
       if (value.url) {
         this.setActivePage(value.url);
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  setActivePage(url: string) {
+  setActivePage(url: string): void {
     if (this.router.url === '/'){
       this.activeUrlIndex = 0;
     } else if (url.includes('new-releases')) {
@@ -74,8 +74,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  arrayMove(arr, fromIndex, toIndex) {
-    var element = arr[fromIndex];
+  arrayMove(arr, fromIndex, toIndex): any {
+    const element = arr[fromIndex];
     element.isSelected = true;
     arr.splice(fromIndex, 1);
     arr.splice(toIndex, 0, element);
