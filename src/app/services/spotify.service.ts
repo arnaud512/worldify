@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { countryList } from './countryList';
 import { BrowserStorageService } from './browser-storage.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,15 @@ export class SpotifyService {
     private browserStorageService: BrowserStorageService
   ) { }
 
-  getToken() {
+  getToken(): any {
     return this.browserStorageService.getLocal('token');
   }
 
-  public isAuthenticated() {
+  public isAuthenticated(): any {
     return this.getToken();
   }
 
-  retrieveToken(origin) {
+  retrieveToken(origin): void {
     this.browserStorageService.removeLocal('token');
     const scopes = 'user-read-private';
     window.location.href = ('https://accounts.spotify.com/authorize/?'
@@ -39,13 +40,13 @@ export class SpotifyService {
       + '&scope=' + scopes);
   }
 
-  getFeaturedPlaylists(country) {
+  getFeaturedPlaylists(country): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
     return this.http.get<any>(this.uriGetFeaturedPlaylists + country, {headers});
   }
 
-  getNewReleased(country, offset) {
+  getNewReleased(country, offset): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
     return this.http.get<any>(this.uriGetNewReleased
@@ -55,7 +56,7 @@ export class SpotifyService {
       {headers});
   }
 
-  getGenres(country) {
+  getGenres(country): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
     return this.http.get<any>(this.uriGetGenres
@@ -65,7 +66,7 @@ export class SpotifyService {
       {headers});
   }
 
-  getPlaylistsById(id, country) {
+  getPlaylistsById(id, country): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
     return this.http.get<any>(this.uriGetGenres + '/' + id + '/playlists'
@@ -74,7 +75,7 @@ export class SpotifyService {
       {headers});
   }
 
-  getLocale(country) {
+  getLocale(country): string {
     const countryObj = countryList.find(obj => obj.code === country);
     return countryObj.locale || 'us_EN';
   }
