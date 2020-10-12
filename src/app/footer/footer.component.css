@@ -3,10 +3,10 @@ footer {
   bottom: 0;
   padding: 1rem;
   width: 100%;
-  background-color: #efefef;
+  background-color: #343a40;
   text-align: center;
 }
 
 footer a {
-  color: #28a745;;
+  color: #28a745;
 }
