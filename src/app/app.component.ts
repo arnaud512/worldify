@@ -66,6 +66,8 @@ export class AppComponent implements OnInit {
       this.activeUrlIndex = 1;
     } else if (url.includes('genres') || url.includes('playlists')) {
       this.activeUrlIndex = 2;
+    } else if (url.includes('favorites')) {
+      this.activeUrlIndex = 3;
     } else {
       this.activeUrlIndex = -1;
     }

@@ -1,0 +1,18 @@
+<main role="main" class="container">
+  <div class="lists" style="display: flex; flex-direction: column;" *ngIf="favLists && (favLists | json) != '{}'; else no_fav">
+    <div class="jumbotron" [ngStyle]="{order: list.value.order}" *ngFor="let list of favLists | keyvalue">
+      <h1 style="text-align: center; margin-bottom: 2rem;">{{ list.value.name }} Favorites</h1>
+      <div class="playlists">
+        <div class="playlist fav" *ngFor="let item of favListsItems[list.key];">
+          <svg class="heart" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" (click)="favorite(list.key, item.id)">
+            <path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/>
+          </svg>
+          <img src="{{ item.images[0].url }}" alt="{{ item.name }}" class="img-thumbnail rounded cursor" width="160px" height="160px" (click)="open(item)">
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #no_fav>
+    <h1>No favorites found</h1>
+  </ng-template>
+</main>

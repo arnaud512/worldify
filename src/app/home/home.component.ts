@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    const favs = localStorage.getItem("fav");
+    const favs = localStorage.getItem('fav-featured');
     if (favs) {
       this.favorites = [...JSON.parse(favs)];
       this.favorites.forEach(async (id) => this.favoritesItems.push(await this.spotifyService.getPlaylist(id).toPromise()));
@@ -50,16 +50,19 @@ export class HomeComponent implements OnInit {
     return this.favorites.some((fav) => fav == id);
   }
   
-  favorite(id): void {
+  async favorite(id): Promise<void> {
     if (this.isFavorite(id)) {
       this.favorites = this.favorites.filter((fav) => fav !== id);
       this.favoritesItems = this.favoritesItems.filter((fav) => fav.id !== id);
     } else {
       this.favorites.push(id);
-      this.spotifyService.getPlaylist(id).toPromise().then((playlist) => this.favoritesItems.push(playlist));
+      this.favoritesItems.push(await this.spotifyService.getPlaylist(id).toPromise());
     }
 
-    localStorage.setItem("fav", JSON.stringify(this.favorites));
-  }
+    localStorage.setItem('fav-featured', JSON.stringify(this.favorites));
+
+    if (this.favorites.length == 0)
+        localStorage.removeItem('fav-featured');
+    }
   
 }

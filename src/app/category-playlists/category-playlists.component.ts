@@ -60,17 +60,38 @@ export class CategoryPlaylistsComponent implements OnInit {
     return this.favorites.some((fav) => fav == id);
   }
   
-  favorite(id): void {
+  async favorite(id): Promise<void> {
     if (this.isFavorite(id)) {
       this.favorites = this.favorites.filter((fav) => fav !== id);
       this.favoritesItems = this.favoritesItems.filter((fav) => fav.id !== id);
     } else {
       this.favorites.push(id);
-      this.spotifyService.getPlaylist(id).toPromise().then((playlist) => this.favoritesItems.push(playlist));
+      this.favoritesItems.push(await this.spotifyService.getPlaylist(id).toPromise());
     }
 
-    const playlist = this.route.snapshot.paramMap.get('id');
-    localStorage.setItem(`fav-${playlist}`, JSON.stringify(this.favorites));
+    const category = this.route.snapshot.paramMap.get('id');
+    localStorage.setItem(`fav-${category}`, JSON.stringify(this.favorites));
+
+    if (this.favorites.length == 0)
+      localStorage.removeItem(`fav-${category}`);
+
+    const favCategories = localStorage.getItem('fav-categories');
+    if (favCategories)
+    {
+      const categories = JSON.parse(favCategories);
+      if (categories.includes(category) && this.favorites.length === 0)
+      {
+        const newCategories = categories.filter((list) => list !== category);
+        localStorage.setItem('fav-categories', JSON.stringify(newCategories));
+
+        if (newCategories.length == 0)
+          localStorage.removeItem('fav-categories');
+      }
+      else if (!categories.includes(category) && this.favorites.length !== 0)
+        localStorage.setItem('fav-categories', JSON.stringify([...categories, category]));
+    }
+    else if (this.favorites.length != 0)
+      localStorage.setItem('fav-categories', JSON.stringify([ category ]))
   }
 
 }

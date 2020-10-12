@@ -73,6 +73,12 @@ export class SpotifyService {
       {headers: headers});
   }
 
+  getCategory(id) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
+    return this.http.get<any>(this.uriGetGenres + "/" + id, {headers: headers});
+  }
+  
   getPlaylist(id) {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', `Bearer ${this.isAuthenticated()}`);
