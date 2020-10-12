@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
+import { BrowserStorageService } from '../services/browser-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private spotifyService: SpotifyService
+    private spotifyService: SpotifyService,
+    private browserStorageService: BrowserStorageService
   ) { }
 
   featuredPlaylists;
@@ -30,8 +32,8 @@ export class HomeComponent implements OnInit {
       this.favorites.forEach(async (id) => this.favoritesItems.push(await this.spotifyService.getPlaylist(id).toPromise()));
     }
 
-    const country = localStorage.getItem('country') || 'FR';
-    this.spotifyService.getFeaturedPlaylists(country).subscribe(
+    const countryCode = this.browserStorageService.getCountryCode();
+    this.spotifyService.getFeaturedPlaylists(countryCode).subscribe(
       res => {
         this.featuredPlaylists = res;
       }, err => {
