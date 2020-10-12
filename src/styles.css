@@ -23,3 +23,24 @@ body {
 .cursor:hover {
     cursor: pointer;
 }
+
+
+
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-container .self-sized-card {
+  width: 160px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
+@media(max-width: 768px) {
+  .flex-container .self-sized-card {
+      flex-grow: 1;
+  }    
+}
